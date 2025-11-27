@@ -32,4 +32,24 @@ ollama run llama3.2:3b
 python .\tests\test_generators.py
 </pre>
 
+## Usage
+```python
+from llmx import llm
 
+# Define your messages and config as needed
+messages = [
+    {"role": "user", "content": "What is the capital city of Germany?"}
+]
+
+config = TextGenerationConfig(
+    temperature=0.4,
+    use_cache=False
+)
+
+ollama_gen = llm(provider="ollama", model="llama3.2:3b")
+response = ollama_gen.generate(messages, config=config)
+answer = response.text[0].content
+
+print("Summary:", answer)
+
+```
